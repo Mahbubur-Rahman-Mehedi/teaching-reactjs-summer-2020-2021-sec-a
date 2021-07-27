@@ -1,6 +1,5 @@
 import { useParams } from "react-router";
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 const CreateUser = ({status, callback})=>{
     const {id:eid} = useParams();
