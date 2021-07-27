@@ -13,16 +13,15 @@ function App() {
     setUserList(list);
   }
 
-  const updateuser = (id,name)=>{
-    
-    userlist.forEach(user => {
-      if (user.id === id) {
+  const createnewUser = (newUser)=>{
+    userlist.push(newUser);
+  }
 
-        user.name = "new";
-        
-      }
-    });
-    //setUserList(list);
+  const updateuser = (id,newUser)=>{
+    
+    const list = userlist.filter((user)=>user.id !== id);
+    setUserList(list);
+    userlist.push(newUser);
   }
 
   return (
@@ -39,7 +38,7 @@ function App() {
             </div>
           </Route>
           <Route path='/create'>
-              <CreateUser status={'add'}/>
+              <CreateUser status={'add'} callback={createnewUser}/>
           </Route>
           
           <Route path='/edit/:id' children={<CreateUser status={'edit'} callback={updateuser}/>}>
