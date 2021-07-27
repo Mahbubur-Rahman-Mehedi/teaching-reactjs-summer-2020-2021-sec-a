@@ -20,6 +20,9 @@ function App() {
   const updateuser = (id,newUser)=>{
     
     const list = userlist.filter((user)=>user.id !== id);
+    console.log(list);
+    console.log(id);
+
     setUserList(list);
     userlist.push(newUser);
   }
@@ -38,10 +41,10 @@ function App() {
             </div>
           </Route>
           <Route path='/create'>
-              <CreateUser status={'add'} callback={createnewUser}/>
+              <CreateUser status={'add'} createcallback={createnewUser}/>
           </Route>
           
-          <Route path='/edit/:id' children={<CreateUser status={'edit'} callback={updateuser}/>}>
+          <Route path='/edit/:id' children={<CreateUser status={'edit'} updatecallback={updateuser}/>}>
 
             
         

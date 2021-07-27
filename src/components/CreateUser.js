@@ -1,7 +1,7 @@
 import { useParams } from "react-router";
 import React from 'react';
 
-const CreateUser = ({status, callback})=>{
+const CreateUser = ({status, createcallback, updatecallback})=>{
     const {id:eid} = useParams();
     var id = '';
     var name = '';
@@ -10,6 +10,7 @@ const CreateUser = ({status, callback})=>{
     const handleSubmit = (event) => {
         const formData = new FormData(event.currentTarget);
         event.preventDefault();
+
         for (let [key, value] of formData.entries()) {
           console.log(key, value);
           if(key === 'name'){
@@ -22,17 +23,20 @@ const CreateUser = ({status, callback})=>{
             dept = value;
         }
         }
+
         const newUser = {
                 id: id, 
                 name: name, 
                 dept: dept
         }
+
         if(status==='add'){
-        callback(newUser);
+            createcallback(newUser);
         alert( name + ' Added\nplease check user list');
         }
-        else{
-            callback(eid,newUser);
+        if(status==='edit'){
+            alert( eid + ' Updated\nplease check user list');
+            updatecallback(eid,newUser);
         }
       };
     return(
